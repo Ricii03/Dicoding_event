@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dicoding.event.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_eventDetailFragment"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_upcoming"
+        android:name="com.dicoding.event.ui.upcoming.EventUpcomingFragment"
+        android:label="@string/title_upcoming"
+        tools:layout="@layout/fragment_event_upcoming">
+        <action
+            android:id="@+id/action_navigation_upcoming_to_eventDetailFragment"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_finished"
+        android:name="com.dicoding.event.ui.finish.EventFinishedFragment"
+        android:label="@string/title_finished"
+        tools:layout="@layout/fragment_event_finished" >
+        <action
+            android:id="@+id/action_navigation_finished_to_eventDetailFragment"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="com.dicoding.event.ui.detail.EventDetailFragment"
+        android:label="@string/title_event_detail"
+        tools:layout="@layout/fragment_event_detail" />
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.dicoding.event.ui.favorite.EventFavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_event_favorite" >
+        <action
+            android:id="@+id/action_eventFavoriteFragment_to_eventDetailFragment"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.dicoding.event.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
