@@ -45,10 +45,10 @@ class EventDetailFragment : Fragment() {
         val passedEventData: EventEntity = arguments?.getParcelable("event_item")!!
 
         val factory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel: EventViewModel by viewModels {
-            factory
-        }
+        val viewModel: EventViewModel by viewModels { factory }
 
+        // Revisi sembunyikan tombol favorite
+        binding?.btnFavorite?.visibility = View.GONE
 
         viewModel.fetchEventDetail(eventId).observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -59,8 +59,8 @@ class EventDetailFragment : Fragment() {
 
                     is Result.Success -> {
                         binding?.progressBar?.visibility = View.GONE
+                        binding?.btnFavorite?.visibility = View.VISIBLE  // Revisi Tampilkan tombol favorite ketika data tampil
                         val eventData = result.data
-
                         eventItem = EventEntity(
                             eventId = passedEventData.eventId,
                             name = passedEventData.name,
@@ -79,7 +79,6 @@ class EventDetailFragment : Fragment() {
                             "Error occurs:" + result.error,
                             Toast.LENGTH_SHORT
                         ).show()
-
                     }
                 }
             }
@@ -93,8 +92,8 @@ class EventDetailFragment : Fragment() {
                 viewModel.deleteEvents(eventItem)
             }
         }
-
     }
+
 
     private fun setEventDetailData(eventDetailList: EventDetailResponse) {
         val eventDetail = eventDetailList.event
